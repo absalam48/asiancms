@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+<h1>{{blog_detail.headline}}</h1>
+{% if blog_detail.blog_image %}
+<img src="{{ blog_detail.blog_image.url }}">
+{% else %}
+<p>No image to dispaly</p>
+{% endif %}
+<p>{{blog_detail.body_text}}</p>
+{% endblock %}

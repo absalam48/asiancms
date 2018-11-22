@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% block body %}
+    {% if services %}
+    {% for serve in services %}
+    <br>
+    <br>
+    <div class="media">
+      <img class="mr-3" src="{{ serve.image.url }}" alt="Generic placeholder image">
+      <div class="media-body">
+        <h5 class="mt-0">{{serve.title}}</h5>
+        {{serve.description}}
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    {% endfor %}
+    {% else %}
+    not working
+    {% endif %}
+
+    {% endblock %}
+  </body>
+</html>

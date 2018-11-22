@@ -1,0 +1,90 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block banner %}
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'blog/image/banner1.jpg' %}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'blog/image/banner2.jpg' %}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'blog/image/banner3.png' %}" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+{% endblock %}
+
+
+{% block body %}
+  <div class="row">
+    <div class="col-9">
+      {% if abouts %}
+      {% for abt in abouts %}
+      <ul>
+        <br>
+         <h2>{{abt.title}}</h2>
+         <p>{{abt.body_text|slice:":499"}}</p>
+      </ul>
+      {% endfor %}
+      {% else %}
+      <h1>no about</h1>
+      {% endif %}
+      </div>
+      <div class="col-3 text-center">
+        <br>
+        <br>
+        <br>
+        <a href="{% url 'blog:about' %}"><button id="singlebutton" name="singlebutton" class="btn btn-primary list-inline-item">Read More!</button></a>
+      </div>
+    </div>
+    <hr>
+
+
+    <h1>Service</h1>
+    <div class="row justify-content-start">
+      {% if services %}
+      {% for serve in services %}
+      <div class="col-sm-3 text-center">
+        <img class="" src="{{ serve.image.url }}">
+        <h5>{{serve.title}}</h5>
+        <p>{{serve.description|slice:":50"}}</p>
+      </div>
+      {% endfor %}
+      {% else %}
+      not work
+      {% endif %}
+    </div>
+
+
+
+<hr>
+
+  <h1>Blog</h1>
+
+    <div class="row justify-content-start ">
+
+      {% if entrys %}
+          {% for blog in entrys %}
+      <div class="col-sm-3">
+      <img class="img-fluid img-thumbnail" src="{{ blog.blog_image.url }}">
+      <h5><a href="{% url 'blog:detail' blog.id %}">{{blog.headline}}</a></h5>
+      <p>{{blog.body_text|slice:":150"}}</p>
+      </div>
+
+
+          {% endfor %}
+      {% else %}
+         <p>No Blog are available</p>
+      {% endif %}
+  </div>
+{% endblock %}
